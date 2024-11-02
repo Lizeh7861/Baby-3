@@ -12,7 +12,7 @@ const reasons = [
     "I love you for putting up with my tantrums and anxiety.", 
     "I love you for smelling so good all the time.",
     "I love you for being so utterly handsome.", 
-    "Because you feel like home.", 
+    "Because you feel like home to me.", 
 ];
 
 const questions = [
