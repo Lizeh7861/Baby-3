@@ -84,7 +84,7 @@ function checkAnswer(selectedOption) {
 function showReasons() {
     questionContainer.classList.add('hidden');
     scoreContainer.classList.remove('hidden');
-    scoreText.textContent = `For each correct answer you got 3 points. You got a score of ${score / 3}! So here are ${score} reasons why I love you <3:`;
+    scoreText.textContent = `For each correct answer you got 2 points. You got a score of ${score / 2}! So here are ${score} reasons why I love you <3:`;
 
     // Display reasons based on score
     reasonsElement.innerHTML = reasons.slice(0, score).map((reason, index) => `<p>${index + 1}. ${reason}</p>`).join('');
