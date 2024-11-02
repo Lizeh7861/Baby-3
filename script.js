@@ -1,0 +1,100 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2709
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 const reasons = [\
+    "I love how you make me laugh after arguments.", "I love the way you look at me.",\
+    "I love how kind and thoughtful you are.", "With you I can be myself.",\
+    "You make my heart smile.", "I love how you listen to all my yapping with patience.",\
+    "Because I miss you\'85 even when you\'92re in the next room.", "You sacrifice and work so hard, without even realizing that you are.",\
+    "You always make time for just the two of us.", "Because you help me see negative things differently.",\
+    "You always keep your promises.", "You always apologize first, no matter who\'92s wrong.",\
+    "You love me even when I\'92m being horrible and hard to be around.", "You make me a better person.",\
+    "You still give me butterflies.", "You\'92re cute when you\'92re grumpy.",\
+    "You make me feel so safe.", "You know when to help and when to let me do it myself.",\
+    "I love your integrity, sincerity, and the values you hold as a person.",\
+    "I love you for putting up with my tantrums and anxiety.", "I love you for smelling so good all the time.",\
+    "I love you for being so utterly handsome.", "Because you feel like home.", "Because you remember small details about me."\
+];\
+\
+const questions = [\
+    \{ question: "What's my favourite colour?", options: ["pink", "blue", "yellow", "orange"], answer: "orange" \},\
+    \{ question: "What's my biggest fear?", options: ["ghosts", "cockroaches", "darkness", "loneliness"], answer: "cockroaches" \},\
+    \{ question: "What's my ideal date?", options: ["hiking and trekking", "romantic dinner", "netflix and cuddling", "Going to the mall"], answer: "netflix and cuddling" \},\
+    \{ question: "What food do I not like?", options: ["pizza", "paalak", "chops", "baingan"], answer: "pizza" \},\
+    \{ question: "What's my dream travel spot?", options: ["thailand", "maldives", "japan", "russia"], answer: "japan" \},\
+    \{ question: "What do I say when I feel a lot of love for you?", options: ["I love you", "Babyyyyy", "Haseeb + pause", "just you"], answer: "just you" \},\
+    \{ question: "What's my favourite way to be addressed?", options: ["baby", "meri jaan", "darling", "alizeh"], answer: "meri jaan" \}\
+];\
+\
+let score = 0;\
+let questionIndex = 0;\
+\
+// DOM elements\
+const questionContainer = document.getElementById('question-container');\
+const scoreContainer = document.getElementById('score-container');\
+const questionElement = document.getElementById('question');\
+const optionsElement = document.getElementById('options');\
+const scoreText = document.getElementById('score-text');\
+const reasonsElement = document.getElementById('reasons');\
+const startButton = document.getElementById('start-button');\
+\
+// Shuffle questions\
+function shuffle(array) \{\
+    for (let i = array.length - 1; i > 0; i--) \{\
+        const j = Math.floor(Math.random() * (i + 1));\
+        [array[i], array[j]] = [array[j], array[i]];\
+    \}\
+\}\
+shuffle(questions);\
+\
+function startGame() \{\
+    score = 0;\
+    questionIndex = 0;\
+    questionContainer.classList.remove('hidden');\
+    scoreContainer.classList.add('hidden');\
+    startButton.classList.add('hidden');\
+    showQuestion();\
+\}\
+\
+function showQuestion() \{\
+    if (questionIndex < questions.length) \{\
+        const currentQuestion = questions[questionIndex];\
+        questionElement.textContent = currentQuestion.question;\
+        optionsElement.innerHTML = ''; // Clear previous options\
+        \
+        currentQuestion.options.forEach(option => \{\
+            const button = document.createElement('button');\
+            button.textContent = option;\
+            button.onclick = () => checkAnswer(option);\
+            optionsElement.appendChild(button);\
+        \});\
+    \} else \{\
+        showReasons();\
+    \}\
+\}\
+\
+function checkAnswer(selectedOption) \{\
+    const correctAnswer = questions[questionIndex].answer;\
+    if (selectedOption === correctAnswer) \{\
+        score += 3; // Each correct answer adds 3 points\
+    \}\
+    questionIndex++;\
+    showQuestion();\
+\}\
+\
+function showReasons() \{\
+    questionContainer.classList.add('hidden');\
+    scoreContainer.classList.remove('hidden');\
+    scoreText.textContent = `For each correct answer you got 3 points. You got a score of $\{score / 3\}! So here are $\{score\} reasons why I love you <3:`;\
+    \
+    // Display reasons based on score\
+    reasonsElement.innerHTML = reasons.slice(0, score).map((reason, index) => `<p>$\{index + 1\}. $\{reason\}</p>`).join('');\
+\}\
+\
+// Start button event\
+startButton.onclick = startGame;\
+}
