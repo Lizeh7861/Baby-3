@@ -1,28 +1,18 @@
 const reasons = [
-    "I love how you make me laugh after arguments.", 
-    "I love the way you look at me.",
-    "I love how kind and thoughtful you are.", 
+    "I love the way you look at me.", 
     "With you I can be myself.",
-    "You make my heart smile.", 
-    "I love how you listen to all my yapping with patience.",
     "Because I miss you… even when you’re in the next room.", 
     "You sacrifice and work so hard, without even realizing that you are.",
-    "You always make time for just the two of us.", 
-    "Because you help me see negative things differently.",
-    "You always keep your promises.", 
     "You always apologize first, no matter who’s wrong.",
     "You love me even when I’m being horrible and hard to be around.", 
-    "You make me a better person.",
     "You still give me butterflies.", 
     "You’re cute when you’re grumpy.",
     "You make me feel so safe.", 
-    "You know when to help and when to let me do it myself.",
-    "I love your integrity, sincerity, and the values you hold as a person.",
+    "I love the values you hold as a person.",
     "I love you for putting up with my tantrums and anxiety.", 
     "I love you for smelling so good all the time.",
     "I love you for being so utterly handsome.", 
     "Because you feel like home.", 
-    "Because you remember small details about me."
 ];
 
 const questions = [
@@ -85,7 +75,7 @@ function showQuestion() {
 function checkAnswer(selectedOption) {
     const correctAnswer = questions[questionIndex].answer;
     if (selectedOption === correctAnswer) {
-        score += 3; // Each correct answer adds 3 points
+        score += 2; // Each correct answer adds 3 points
     }
     questionIndex++;
     showQuestion();
