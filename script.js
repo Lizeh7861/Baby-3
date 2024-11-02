@@ -75,7 +75,7 @@ function showQuestion() {
 function checkAnswer(selectedOption) {
     const correctAnswer = questions[questionIndex].answer;
     if (selectedOption === correctAnswer) {
-        score += 2; // Each correct answer adds 3 points
+        score += 2; // Each correct answer adds 2 points
     }
     questionIndex++;
     showQuestion();
